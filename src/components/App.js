@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -124,15 +125,28 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>  
       <div className="body">
         <Header />
-        <Main 
-          onEditProfile = {handleEditProfileClick}
-          onAddPlace = {handleAddPlaceClick}
-          onEditAvatar = {handleEditAvatarClick}
-          onCardClick = {handleCardClick}
-          cards = {cards}
-          onCardLike = {handleCardLike}
-          onCardDelete = {handleCardDelete}
-        />
+          <Switch>
+            <Route exact path='/'>
+              <Main 
+                onEditProfile = {handleEditProfileClick}
+                onAddPlace = {handleAddPlaceClick}
+                onEditAvatar = {handleEditAvatarClick}
+                onCardClick = {handleCardClick}
+                cards = {cards}
+                onCardLike = {handleCardLike}
+                onCardDelete = {handleCardDelete}
+              />
+            </Route>
+            <Route path='/sign-up'>
+              
+            </Route>
+            <Route path='/sign-in'>
+    
+            </Route>
+            <Route path = "/">
+              {loggedIn ? <Redirect to = '/' /> : <Redirect to = '/login' />}
+            </Route>
+          </Switch>
         <Footer />
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
