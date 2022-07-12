@@ -1,0 +1,10 @@
+.element__information {
+    max-width: 246px;
+    min-height: 79px;
+    background-color: #FFFFFF;
+    display: flex;
+    padding: 0 15px 0 21px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+}

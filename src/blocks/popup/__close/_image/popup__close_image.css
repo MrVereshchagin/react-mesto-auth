@@ -1,0 +1,13 @@
+.popup__close_image {
+    position: absolute;
+    top: -7%;
+    left: 101%;
+}
+
+@media screen and (max-width: 1023px) {
+    .popup__close_image {
+        top: -5%;
+        max-width: 22px;
+        min-height: 22px;
+    }
+}

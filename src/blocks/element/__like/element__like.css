@@ -1,0 +1,23 @@
+.element__like {
+    min-width: 22px;
+    height: 19px;
+    background: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    border: none;
+    transition: opacity .3s;
+}
+
+.element__like_non_active {
+    background-image: url(../../../images/heart.svg);
+}
+
+.element__like:hover {
+    opacity: 0.6;
+}
+
+.element__like_active {
+    background-image: url(../../../images/Union.svg);
+}

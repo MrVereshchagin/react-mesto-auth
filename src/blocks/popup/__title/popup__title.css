@@ -1,0 +1,17 @@
+.popup__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    margin: 0;
+    padding-top: 34px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+    .popup__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
