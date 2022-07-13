@@ -125,28 +125,35 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>  
       <div className="body">
         <Header />
-          <Switch>
-            <Route exact path='/'>
-              <Main 
-                onEditProfile = {handleEditProfileClick}
-                onAddPlace = {handleAddPlaceClick}
-                onEditAvatar = {handleEditAvatarClick}
-                onCardClick = {handleCardClick}
-                cards = {cards}
-                onCardLike = {handleCardLike}
-                onCardDelete = {handleCardDelete}
-              />
+        <Switch>
+            <Route
+              exact
+              path = '/'
+              loggedIn = {loggedIn} 
+              onEditProfile = {handleEditProfileClick}
+              onAddPlace = {handleAddPlaceClick}
+              onEditAvatar = {handleEditAvatarClick}
+              onCardClick = {handleCardClick}
+              cards = {cards}
+              onCardLike = {handleCardLike}
+              onCardDelete = {handleCardDelete}
+              component = {Main}
+            >
             </Route>
+
             <Route path='/sign-up'>
               
             </Route>
+            
             <Route path='/sign-in'>
     
             </Route>
-            <Route path = "/">
-              {loggedIn ? <Redirect to = '/' /> : <Redirect to = '/login' />}
+            
+            <Route>
+              <Redirect to = {`${loggedIn} ? '/' : '/sign-in'`}></Redirect>
             </Route>
-          </Switch>
+
+        </Switch>
         <Footer />
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
