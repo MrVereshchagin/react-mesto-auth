@@ -23,6 +23,8 @@ function App() {
 
   const [cards, setCards] = useState([]);
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
   useEffect(() => {
     api.getProfile()
     .then ((userData) => {
@@ -130,6 +132,9 @@ function App() {
               exact
               path = '/'
               loggedIn = {loggedIn} 
+              component = {Main}
+            >
+              <Main
               onEditProfile = {handleEditProfileClick}
               onAddPlace = {handleAddPlaceClick}
               onEditAvatar = {handleEditAvatarClick}
@@ -137,8 +142,8 @@ function App() {
               cards = {cards}
               onCardLike = {handleCardLike}
               onCardDelete = {handleCardDelete}
-              component = {Main}
-            >
+              >
+              </Main>
             </Route>
 
             <Route path='/sign-up'>
@@ -150,9 +155,8 @@ function App() {
             </Route>
             
             <Route>
-              <Redirect to = {`${loggedIn} ? '/' : '/sign-in'`}></Redirect>
+              <Redirect to = {`${loggedIn} ? '/' : '/sign-in'`}/>
             </Route>
-
         </Switch>
         <Footer />
 
