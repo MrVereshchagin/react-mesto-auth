@@ -1,63 +1,62 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function Login (props) {
+    const { onLogin } = props;
 
-    handleChange(e) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleChange (e) {
         const {name, value} = e.target;
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        if(!this.state.username || !this.state.password) {
-            return;
+        if(name === 'email') {
+            setEmail(value);
         }
-        auth.authorize(this.state.username, this.state.password)
-        .then((data) => {
-            if(data.jwt) {
-                this.setState({email:'', password: ''})
-            }
-        })
+
+        if(name === 'password') {
+            setPassword(value);
+        }
     }
 
-    render(){
-        return(
-            <div className="login">
-                <header className="header login__header">
-                    <a href="#"><img src="./images/logo.svg" alt="лого" class="header__logo"/></a>
-                    <a href='#'>Войти</a>
-                </header>
+    function handleSubmit(e) {
+        e.preventDefault();
 
-                <h2 className="login__title">Вход</h2>
-
-                <form onSubmit={this.handleSubmit} className="login__form">
-                    <label htmlFor="username">
-                        Email:
-                    </label>
-                    <input required id="username" name="username" type="text" value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor="password">
-                        Пароль:
-                    </label>
-                    <input required id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-                    <div className="login__button-container">
-                        <button type="submit" onSubmit={this.handleSubmit} className="login__link">Войти</button>
-                    </div>
-                </form>
-            </div>
-        )
+        if(email && password) {
+            onLogin(email, password);
+        }
     }
+
+    return (
+        <form onSubmit={handleSubmit} className="popup__form popup__form_auth" name="login_profile" noValidate>
+            <h2 className="popup__title popup__title_auth">Вход</h2>
+            <input
+                required
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="popup__input popup__input_auth"
+                minLength="2"
+                maxLength="40"
+            />
+            <span className="popup__error"></span>
+            <input
+                required
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="popup__input popup__input_auth"
+                minLength="2"
+                maxLength="40"
+            />
+            <span className="popup__error"></span>
+            <button type="submit" className="popup__button popup__button_auth">Войти</button>
+        </form>
+    )
 }
 
 export default Login;

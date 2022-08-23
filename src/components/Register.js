@@ -1,70 +1,72 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-class Register extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            email: '',
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function Register(props) {
+    const { onRegister } = props;
 
-    componentDidMount(){
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    }
-
-    handleChange = (e) => {
-        const {name, value} = e.target;
-        this.setState({
-          [name]: value
-        });
-    }
-
-    handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
-        if (this.state.password === this.state.confirmPassword){
-          auth.register(this.state.username, this.state.password, this.state.email, this.state.calGoal).then((res) => {
-            if(res.statusCode !== 400){
-              this.props.history.push('/login');
-            }
-          });
+    
+        if (email && password) {
+          onRegister(email, password);
         }
     }
 
-    render() {
-        return (
-            <div className="register">
-                <header className="header register__header">
-                    <a href="#"><img src="./images/logo.svg" alt="лого" class="header__logo"/></a>
-                    <a href='#'>Регистрация</a>
-                </header>
-
-                <h2 className="register__title">Вход</h2>
-
-                <form onSubmit={this.handleSubmit} className="register__form">
-                    <label htmlFor="username">
-                        Email:
-                    </label>
-                    <input required id="username" name="username" type="text" value={this.state.username} onChange={this.handleChange} />
-                    <label htmlFor="password">
-                        Пароль:
-                    </label>
-                    <input required id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-                    <div className="register__button-container">
-                        <button type="submit" onSubmit={this.handleSubmit} className="register__link">Зарегистрироваться</button>
-                    </div>
-                </form>
-
-                <div className="register__signup">
-                    <p>Уже зарегистрированы?</p>
-                    <Link to="/sign-in" className="register__signup_link">Войти</Link>
-                </div>
-            </div>
-        )
+    function handleChange(e) {
+        const { name, value } = e.target;
+    
+        if (name === "email") {
+          setEmail(value);
+        }
+    
+        if (name === "password") {
+          setPassword(value);
+        }
     }
+
+
+    return (
+        <form onSubmit={handleSubmit} className="popup__form popup__form_auth" name="register_profile" noValidate>
+            <h2 className="popup__title popup__title_auth">Регистрация</h2>
+            <input
+                required
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="popup__input popup__input_auth"
+                minLength="2"
+                maxLength="40"
+            />
+            <span class="popup__error"></span>
+            <input
+                required
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="popup__input popup__input_auth"
+                minLength="2"
+                maxLength="40"
+            />
+            <span class="popup__error"></span>
+            <button type="submit" className="popup__button popup__button_auth">Зарегистрироваться</button>
+
+            <p className="popup__form-action">
+                Уже зарегистрированы?{" "}
+                <Link className="link" to="/sign-in">
+                    Войти
+                </Link>
+            </p>
+        </form>
+    )
 }
 
 export default Register;
