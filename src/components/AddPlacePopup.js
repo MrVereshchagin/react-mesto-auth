@@ -60,7 +60,6 @@ function AddPlacePopup(props) {
                 name = "cardlink"
                 required
                 onChange={handleChangeLink}
-                isOpen = {props.isOpen}
                 onClose = {props.onClose} 
             />
             <span id = "error-popup_cards_link" className = "popup__error"></span>

@@ -56,12 +56,12 @@ function Register(props) {
                 minLength="2"
                 maxLength="40"
             />
-            <span class="popup__error"></span>
+            <span className="popup__error"></span>
             <button type="submit" className="popup__button popup__button_auth">Зарегистрироваться</button>
 
             <p className="popup__form-action">
                 Уже зарегистрированы?{" "}
-                <Link className="link" to="/sign-in">
+                <Link className="link popup__form-link" to="/sign-in">
                     Войти
                 </Link>
             </p>

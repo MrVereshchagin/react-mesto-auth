@@ -11,10 +11,10 @@ function Header(props) {
     const headerLink = (
         <Switch>
             <Route exact path='/sign-in'>
-                <Link to='/sign-up' className='link header__link'>Регистрация</Link>
+                <Link to='/sign-up' className='header__link link'>Регистрация</Link>
             </Route>
             <Route exact path='/sign-up'>
-                <Link to='/sign-in' className='link header__link'>Войти</Link>
+                <Link to='/sign-in' className='header__link link'>Войти</Link>
             </Route>
         </Switch>
     );
@@ -25,7 +25,7 @@ function Header(props) {
             <div className='header__menu'>
                 { loggedIn && <p className='header__email'>{userEmail}</p> }
                 { !loggedIn && headerLink }
-                { loggedIn && <Link to='/#' onClick={onSignOut} className='link header__exit'>Выйти
+                { loggedIn && <Link to='/#' onClick={onSignOut} className='header__exit link'>Выйти
                 </Link> }
             </div>
         </header>
