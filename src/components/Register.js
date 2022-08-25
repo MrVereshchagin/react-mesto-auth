@@ -43,7 +43,7 @@ function Register(props) {
                 minLength="2"
                 maxLength="40"
             />
-            <span class="popup__error"></span>
+            <span className="popup__error"></span>
             <input
                 required
                 id="password"

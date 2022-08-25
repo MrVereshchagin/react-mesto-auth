@@ -174,7 +174,6 @@ function App() {
     Auth.authorize(email, password)
       .then((res) => {
         if (res.token) {
-          console.log(res.token);
           setLoggedIn(true);
           setUserEmail(email);
           history.push("/");
